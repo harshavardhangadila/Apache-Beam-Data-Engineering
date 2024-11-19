@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h3>Interactive Scatter Plot (PCA Clustering)</h3>
+    <svg width="800" height="500"></svg>
+    <script>
+        const data = DATA;
+
+        const width = 800, height = 500, margin = 40;
+
+        const svg = d3.select("svg");
+        const xScale = d3.scaleLinear()
+            .domain(d3.extent(data, d => d.PCA1))
+            .range([margin, width - margin]);
+
+        const yScale = d3.scaleLinear()
+            .domain(d3.extent(data, d => d.PCA2))
+            .range([height - margin, margin]);
+
+        const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+        svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", d => xScale(d.PCA1))
+            .attr("cy", d => yScale(d.PCA2))
+            .attr("r", 5)
+            .attr("fill", d => colorScale(d.Cluster));
+
+        svg.append("g")
+            .attr("transform", "translate(0, " + (height - margin) + ")")
+            .call(d3.axisBottom(xScale));
+
+        svg.append("g")
+            .attr("transform", "translate(" + margin + ", 0)")
+            .call(d3.axisLeft(yScale));
+
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", height - 10)
+            .style("text-anchor", "middle")
+            .text("PCA1");
+
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -height / 2)
+            .attr("y", 20)
+            .style("text-anchor", "middle")
+            .text("PCA2");
+    </script>
+</body>
+</html>
