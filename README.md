@@ -6,7 +6,7 @@ Release_year: The year the content was released.
 Duration: Duration of movies in minutes or TV shows in seasons.
 Type: Specifies whether the content is a movie or a TV show.
 
-Youtube: EDA, AutoEDA, Apache Beam(https://www.youtube.com/playlist?list=PLmMNfv-hv1hb2KQ4w_b6sni3h13-RY9vz)
+Youtube: EDA, AutoEDA, Apache Beam{https://www.youtube.com/playlist?list=PLmMNfv-hv1hb2KQ4w_b6sni3h13-RY9vz}
 
 
 
